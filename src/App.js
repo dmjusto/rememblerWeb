@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
+
 import Card from './card';
+import Navbar from './navBar';
 
 function App() {
   return (
     <div className="App">
-      <h1>RemembleR</h1>
+      <Navbar/>
       <Card/>
     </div>
   );
