@@ -14,6 +14,13 @@ export default class card extends Component {
         this.state = {
             isFront: true
         }
+
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick(evt){
+        const flipFace = !this.state.isFront;
+        this.setState({isFront:flipFace})
     }
 
     render() {
@@ -24,7 +31,7 @@ export default class card extends Component {
                     <span className='headerText parentFolder'>{this.props.parentFolder} {" > "}</span>
                     <span className='headerText parentDeck'><em>{this.props.parentDeck}</em></span>
                 </div>
-                <i class="fas fa-undo"></i>
+                <i class="fas fa-undo" onClick={this.handleClick}></i>
             </div>
         )
     }
