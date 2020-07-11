@@ -9,6 +9,17 @@
     position: relative;
 }
 
+.card i{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0 20px 20px 0;
+}
+
+.card i:hover{
+    cursor: pointer;
+}
+
 .cardHeader{
     background-color: #202020;
     text-align: end;
