@@ -14,24 +14,40 @@ export default class card extends Component {
     }
 
     render() {
-        const {facingForward, handleClick, handleDelete} = this.props;
+        const {facingForward, handleClick, handleDelete, frontContent, backContent} = this.props;
         return (
-            <div className='card'>
-                {facingForward ? <h2>{this.props.frontContent}</h2> : <h2>{this.props.backContent}</h2> }
-                <div className="cardHeader">
-                    <div>
-                        <span className='headerText parentFolder'>{this.props.parentFolder} {" > "}</span>
-                        <span className='headerText parentDeck'><em>{this.props.parentDeck}</em></span>
+            <div className={`card ${!facingForward  && 'isFlipped'}`} onClick={handleClick}>
+                <div className='card-face card-face-front'>
+                    <h2>{frontContent}</h2>
+                    <div className="cardHeader">
+                        <div>
+                            <span className='headerText parentFolder'>{this.props.parentFolder} {" > "}</span>
+                            <span className='headerText parentDeck'><em>{this.props.parentDeck}</em></span>
+                        </div>
+                        <Tooltip title='delete card' placement='top-end' arrow TransitionComponent={Zoom}>
+                            <DeleteIcon className='icon' onClick={handleDelete}/>
+                        </Tooltip>
+                        
                     </div>
-                    <Tooltip title='delete card' placement='top-end' arrow TransitionComponent={Zoom}>
-                        <DeleteIcon className='icon' onClick={handleDelete}/>
-                    </Tooltip>
-                    
                 </div>
-                {/* <Tooltip title='flip card' placement='left' arrow TransitionComponent={Zoom}> */}
-                    <ReplayIcon id='flipIcon' onClick={handleClick}/>
-                {/* </Tooltip> */}
+
+                <div className='card-face card-face-back'>
+                    <h2>{backContent}</h2>
+                    <div className="cardHeader">
+                        <div>
+                            <span className='headerText parentFolder'>{this.props.parentFolder} {" > "}</span>
+                            <span className='headerText parentDeck'><em>{this.props.parentDeck}</em></span>
+                        </div>
+                        <Tooltip title='delete card' placement='top-end' arrow TransitionComponent={Zoom}>
+                            <DeleteIcon className='icon' onClick={handleDelete}/>
+                        </Tooltip>
+                        
+                    </div>
+                </div>
+
+
             </div>
+            
         )
     }
 }

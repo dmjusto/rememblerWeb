@@ -32,14 +32,14 @@ export default class deckDisplay extends Component {
     handlePrev(){
         this.setState({
             cards: [...this.state.cards, this.state.discard.pop()],
-            facingForward: true
+            // facingForward: true
         })
     }
 
     handleNext(){
         this.setState({
             discard: [...this.state.discard, this.state.cards.pop()],
-            facingForward: true
+            // facingForward: true
         })
     }
 
@@ -74,14 +74,19 @@ export default class deckDisplay extends Component {
                         <Fab className='btn' size='small' disableRipple='true'><EditIcon/></Fab>
                     </Tooltip>
                 </div>
+
+                <div className="deck">
+                    {cards.length > 0 &&
+                    <Card 
+                        {...cardContent} 
+                        facingForward={facingForward} 
+                        handleClick={this.flipCard}
+                        handleDelete={this.handleDelete}
+                    />}
+                    {/* <DeckBlank/> */}
+                </div>
                 
-                {cards.length > 0 ?
-                  <Card 
-                    {...cardContent} 
-                    facingForward={facingForward} 
-                    handleClick={this.flipCard}
-                    handleDelete={this.handleDelete}
-                /> : <DeckBlank/>}
+                
                 
 
                 <div id="deckNavigation">

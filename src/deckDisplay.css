@@ -15,6 +15,12 @@
     box-shadow: none;
 }
 
+.deck{
+    width: 500px;
+    height: 300px;
+    perspective: 1500px;
+}
+
 .cardContent-edit .btn{
     background-color: #212121;
     color: #F2F2F2;
