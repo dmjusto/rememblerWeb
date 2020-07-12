@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './card.css';
 import DeleteIcon from '@material-ui/icons/Delete';
+import ReplayIcon from '@material-ui/icons/Replay';
 import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
 
@@ -27,7 +28,9 @@ export default class card extends Component {
                     </Tooltip>
                     
                 </div>
-                <i className="fas fa-undo" onClick={handleClick}></i>
+                {/* <Tooltip title='flip card' placement='left' arrow TransitionComponent={Zoom}> */}
+                    <ReplayIcon id='flipIcon' onClick={handleClick}/>
+                {/* </Tooltip> */}
             </div>
         )
     }

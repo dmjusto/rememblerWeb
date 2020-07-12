@@ -87,6 +87,7 @@ export default class deckDisplay extends Component {
                 <div id="deckNavigation">
                     <Fab 
                         color='secondary'
+                        disableRipple='true'
                         className='btn' 
                         aria-label='previous flashcard' 
                         onClick={this.handlePrev}
@@ -97,6 +98,7 @@ export default class deckDisplay extends Component {
 
                     <Fab 
                         color='secondary'
+                        disableRipple='true'
                         className='btn' 
                         aria-label="next flashcard" 
                         onClick={this.handleNext}
