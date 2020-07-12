@@ -7,6 +7,7 @@
     align-items: center;
     border: 7px dashed #F2F2F2;
     color: #F2F2F2;
-    /* margin: 3.5px; */
     box-sizing: border-box;
+    position: absolute;
+    z-index: -10;
 }

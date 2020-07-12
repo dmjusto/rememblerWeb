@@ -3,11 +3,11 @@
     height: 100%;
     width: 100%;
     border-radius: 15px;
-    position: relative;
+    position: absolute;
     box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.3);
     transition: transform 500ms ease-in-out;
     transform-style: preserve-3d;
-    transform-origin: center right;
+    transform-origin: center left;
 }
 
 .card-face:hover{
@@ -29,7 +29,7 @@
 }
 
 .card.isFlipped{
-    transform: translateX(-100%) rotateY(180deg);
+    transform: translateX(100%) rotateY(180deg);
 }
 
 #flipIcon{

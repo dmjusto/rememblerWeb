@@ -15,12 +15,12 @@ export default class deckDisplay extends Component {
         super(props);
         this.state = {
             cards: [
-                {frontContent: 'Card 3 front', backContent: 'Card 3 back'},
-                {frontContent: 'Card 2 front', backContent: 'Card 2 back'},
-                {frontContent: 'Card 1 front', backContent: 'Card 1 back'}
+                {frontContent: 'Card 3 front', backContent: 'Card 3 back', facingForward: true},
+                {frontContent: 'Card 2 front', backContent: 'Card 2 back', facingForward: true},
+                {frontContent: 'Card 1 front', backContent: 'Card 1 back', facingForward: true}
             ],
             discard: [],
-            facingForward: true,
+            // facingForward: true,
         }
 
         this.handleNext = this.handleNext.bind(this);
@@ -52,8 +52,12 @@ export default class deckDisplay extends Component {
     }
 
     flipCard(){
+        const lastCardIndex = this.state.cards.length - 1;
+        const flippedCard = this.state.cards[lastCardIndex];
+        flippedCard.facingForward = !flippedCard.facingForward;
+
         this.setState(state => ({
-            facingForward: !state.facingForward
+            cards: [...state.cards.slice(0, lastCardIndex), flippedCard]
         }))
     }
 
@@ -63,6 +67,7 @@ export default class deckDisplay extends Component {
         const discardSize = discard.length;
         const cardIndex = deckSize - 1;
         let cardContent = cards[cardIndex];
+        let secondCardContent = cards[cardIndex - 1]
         return (
             <div className='deckDisplay'>
                 <div className="cardContent-edit">
@@ -76,13 +81,24 @@ export default class deckDisplay extends Component {
                 </div>
 
                 <div className="deck">
+                    {/* {cards.length > 1 &&
+                        <Card 
+                            {...secondCardContent} 
+                            facingForward={true} 
+                            handleClick={this.flipCard}
+                            handleDelete={this.handleDelete}
+                        />
+                    } */}
+
                     {cards.length > 0 &&
-                    <Card 
-                        {...cardContent} 
-                        facingForward={facingForward} 
-                        handleClick={this.flipCard}
-                        handleDelete={this.handleDelete}
-                    />}
+                        <Card 
+                            {...cardContent} 
+                            // facingForward={facingForward} 
+                            handleClick={this.flipCard}
+                            handleDelete={this.handleDelete}
+                         />
+                    }
+
                     {/* <DeckBlank/> */}
                 </div>
                 
