@@ -16,12 +16,11 @@ export default class deckDisplay extends Component {
         super(props);
         this.state = {
             cards: [
-                {frontContent: 'Card 1 front', backContent: 'Card 1 back'},
+                {frontContent: 'Card 3 front', backContent: 'Card 3 back'},
                 {frontContent: 'Card 2 front', backContent: 'Card 2 back'},
-                {frontContent: 'Card 3 front', backContent: 'Card 3 back'}
+                {frontContent: 'Card 1 front', backContent: 'Card 1 back'}
             ],
             discard: [],
-            // cardIndex: 0,
             facingForward: true,
         }
 
@@ -32,16 +31,15 @@ export default class deckDisplay extends Component {
     }
 
     handlePrev(){
-        // const currIndex = this.state.cardIndex;
-        // let prevIndex = currIndex - 1;
-        // if(prevIndex < 0) prevIndex = this.state.cards.length - 1;
-        // this.setState({cardIndex: prevIndex, facingForward: true});
+        this.setState({
+            cards: [...this.state.cards, this.state.discard.pop()]
+        })
     }
 
     handleNext(){
-        // const currIndex = this.state.cardIndex;
-        // const nextIndex = (currIndex + 1) % this.state.cards.length;
-        // this.setState({cardIndex: nextIndex, facingForward: true});
+        this.setState({
+            discard: [...this.state.discard, this.state.cards.pop()]
+        })
     }
 
     handleDelete(){
@@ -59,8 +57,9 @@ export default class deckDisplay extends Component {
     }
 
     render() {
-        const {cards, facingForward} = this.state;
+        const {cards, discard, facingForward} = this.state;
         const deckSize = cards.length;
+        const discardSize = discard.length;
         const cardIndex = deckSize - 1;
         let cardContent = cards[cardIndex];
         return (
@@ -91,11 +90,23 @@ export default class deckDisplay extends Component {
                 
 
                 <div id="deckNavigation">
-                    <Fab className='btn' aria-label='previous flashcard' disableRipple='true' onClick={this.handlePrev}>
+                    <Fab 
+                        color='secondary'
+                        className='btn' 
+                        aria-label='previous flashcard' 
+                        onClick={this.handlePrev}
+                        disabled={discardSize <= 0}
+                    >
                         <NavigateBeforeIcon/>
                     </Fab>
 
-                    <Fab className='btn' aria-label="next flashcard" disableRipple='true' onClick={this.handleNext}>
+                    <Fab 
+                        color='secondary'
+                        className='btn' 
+                        aria-label="next flashcard" 
+                        onClick={this.handleNext}
+                        disabled={deckSize <= 0}
+                    >
                         <NavigateNextIcon />
                     </Fab>
                 </div>
