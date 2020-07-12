@@ -20,26 +20,35 @@ export default class deckDisplay extends Component {
                 {frontContent: 'Card 3 front', backContent: 'Card 3 back'}
             ],
             discard: [],
-            cardIndex: 0,
+            // cardIndex: 0,
             facingForward: true,
         }
 
         this.handleNext = this.handleNext.bind(this);
         this.handlePrev = this.handlePrev.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
         this.flipCard = this.flipCard.bind(this);
     }
 
     handlePrev(){
-        const currIndex = this.state.cardIndex;
-        let prevIndex = currIndex - 1;
-        if(prevIndex < 0) prevIndex = this.state.cards.length - 1;
-        this.setState({cardIndex: prevIndex, facingForward: true});
+        // const currIndex = this.state.cardIndex;
+        // let prevIndex = currIndex - 1;
+        // if(prevIndex < 0) prevIndex = this.state.cards.length - 1;
+        // this.setState({cardIndex: prevIndex, facingForward: true});
     }
 
     handleNext(){
-        const currIndex = this.state.cardIndex;
-        const nextIndex = (currIndex + 1) % this.state.cards.length;
-        this.setState({cardIndex: nextIndex, facingForward: true});
+        // const currIndex = this.state.cardIndex;
+        // const nextIndex = (currIndex + 1) % this.state.cards.length;
+        // this.setState({cardIndex: nextIndex, facingForward: true});
+    }
+
+    handleDelete(){
+        const newDeck = this.state.cards;
+        newDeck.pop();
+        this.setState({
+            cards: newDeck
+        })
     }
 
     flipCard(){
@@ -49,7 +58,8 @@ export default class deckDisplay extends Component {
     }
 
     render() {
-        const {cards, cardIndex, facingForward} = this.state;
+        const {cards, facingForward} = this.state;
+        const cardIndex = cards.length - 1;
         let cardContent = cards[cardIndex];
         return (
             <div className='deckDisplay'>
@@ -58,14 +68,15 @@ export default class deckDisplay extends Component {
                         <Fab className='btn' size='small' disableRipple='true'><AddIcon/></Fab>
                     </Tooltip>
                     <Tooltip title='delete flashcard' placement='top-start' arrow TransitionComponent={Zoom}>
-                        <Fab className='btn' size='small' disableRipple='true'><DeleteIcon/></Fab>
+                        <Fab className='btn' size='small' disableRipple='true' onClick={this.handleDelete}><DeleteIcon/></Fab>
                     </Tooltip>
                     <Tooltip title='edit flashcard' placement='top-start' arrow TransitionComponent={Zoom}>
                         <Fab className='btn' size='small' disableRipple='true'><EditIcon/></Fab>
                     </Tooltip>
                 </div>
-
-                <Card {...cardContent} facingForward={facingForward} handleClick={this.flipCard}/>
+                
+                {cards.length > 0 && <Card {...cardContent} facingForward={facingForward} handleClick={this.flipCard}/>}
+                
 
                 <div id="deckNavigation">
                     <Fab className='btn' aria-label='previous flashcard' disableRipple='true' onClick={this.handlePrev}>
