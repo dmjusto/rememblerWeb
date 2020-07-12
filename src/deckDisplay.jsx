@@ -43,7 +43,8 @@ export default class deckDisplay extends Component {
         })
     }
 
-    handleDelete(){
+    handleDelete(e){
+        e.stopPropagation();
         const newDeck = this.state.cards;
         newDeck.pop();
         this.setState({
