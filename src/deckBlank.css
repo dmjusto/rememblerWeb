@@ -1,0 +1,12 @@
+.deckBlank{
+    height: 300px;
+    width: 500px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 7px dashed #F2F2F2;
+    color: #F2F2F2;
+    /* margin: 3.5px; */
+    box-sizing: border-box;
+}

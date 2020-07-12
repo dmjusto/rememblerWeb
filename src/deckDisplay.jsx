@@ -8,6 +8,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
 import Card from './card';
+import DeckBlank from './deckBlank';
 import './deckDisplay.css';
 
 export default class deckDisplay extends Component {
@@ -59,7 +60,8 @@ export default class deckDisplay extends Component {
 
     render() {
         const {cards, facingForward} = this.state;
-        const cardIndex = cards.length - 1;
+        const deckSize = cards.length;
+        const cardIndex = deckSize - 1;
         let cardContent = cards[cardIndex];
         return (
             <div className='deckDisplay'>
@@ -68,14 +70,24 @@ export default class deckDisplay extends Component {
                         <Fab className='btn' size='small' disableRipple='true'><AddIcon/></Fab>
                     </Tooltip>
                     <Tooltip title='delete flashcard' placement='top-start' arrow TransitionComponent={Zoom}>
-                        <Fab className='btn' size='small' disableRipple='true' onClick={this.handleDelete}><DeleteIcon/></Fab>
+                        <Fab 
+                            className='btn' 
+                            size='small' 
+                            disableRipple='true' 
+                            onClick={this.handleDelete}
+                            disabled={deckSize <= 0}
+                        >
+                            <DeleteIcon/>
+                        </Fab>
                     </Tooltip>
                     <Tooltip title='edit flashcard' placement='top-start' arrow TransitionComponent={Zoom}>
                         <Fab className='btn' size='small' disableRipple='true'><EditIcon/></Fab>
                     </Tooltip>
                 </div>
                 
-                {cards.length > 0 && <Card {...cardContent} facingForward={facingForward} handleClick={this.flipCard}/>}
+                {cards.length > 0 ?
+                  <Card {...cardContent} facingForward={facingForward} handleClick={this.flipCard}/> : <DeckBlank/>
+                }
                 
 
                 <div id="deckNavigation">
