@@ -3,7 +3,6 @@ import Fab from '@material-ui/core/Fab';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import AddIcon from '@material-ui/icons/Add';
-import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
@@ -32,13 +31,15 @@ export default class deckDisplay extends Component {
 
     handlePrev(){
         this.setState({
-            cards: [...this.state.cards, this.state.discard.pop()]
+            cards: [...this.state.cards, this.state.discard.pop()],
+            facingForward: true
         })
     }
 
     handleNext(){
         this.setState({
-            discard: [...this.state.discard, this.state.cards.pop()]
+            discard: [...this.state.discard, this.state.cards.pop()],
+            facingForward: true
         })
     }
 
@@ -68,25 +69,19 @@ export default class deckDisplay extends Component {
                     <Tooltip title='add flashcard' placement='top-start' arrow TransitionComponent={Zoom}>
                         <Fab className='btn' size='small' disableRipple='true'><AddIcon/></Fab>
                     </Tooltip>
-                    <Tooltip title='delete flashcard' placement='top-start' arrow TransitionComponent={Zoom}>
-                        <Fab 
-                            className='btn' 
-                            size='small' 
-                            disableRipple='true' 
-                            onClick={this.handleDelete}
-                            disabled={deckSize <= 0}
-                        >
-                            <DeleteIcon/>
-                        </Fab>
-                    </Tooltip>
+                
                     <Tooltip title='edit flashcard' placement='top-start' arrow TransitionComponent={Zoom}>
                         <Fab className='btn' size='small' disableRipple='true'><EditIcon/></Fab>
                     </Tooltip>
                 </div>
                 
                 {cards.length > 0 ?
-                  <Card {...cardContent} facingForward={facingForward} handleClick={this.flipCard}/> : <DeckBlank/>
-                }
+                  <Card 
+                    {...cardContent} 
+                    facingForward={facingForward} 
+                    handleClick={this.flipCard}
+                    handleDelete={this.handleDelete}
+                /> : <DeckBlank/>}
                 
 
                 <div id="deckNavigation">

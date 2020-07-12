@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import './card.css';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Tooltip from '@material-ui/core/Tooltip';
+import Zoom from '@material-ui/core/Zoom';
 
 export default class card extends Component {
     static defaultProps = {
@@ -10,13 +13,19 @@ export default class card extends Component {
     }
 
     render() {
-        const {facingForward, handleClick} = this.props;
+        const {facingForward, handleClick, handleDelete} = this.props;
         return (
             <div className='card'>
                 {facingForward ? <h2>{this.props.frontContent}</h2> : <h2>{this.props.backContent}</h2> }
                 <div className="cardHeader">
-                    <span className='headerText parentFolder'>{this.props.parentFolder} {" > "}</span>
-                    <span className='headerText parentDeck'><em>{this.props.parentDeck}</em></span>
+                    <div>
+                        <span className='headerText parentFolder'>{this.props.parentFolder} {" > "}</span>
+                        <span className='headerText parentDeck'><em>{this.props.parentDeck}</em></span>
+                    </div>
+                    <Tooltip title='delete card' placement='top-end' arrow TransitionComponent={Zoom}>
+                        <DeleteIcon className='icon' onClick={handleDelete}/>
+                    </Tooltip>
+                    
                 </div>
                 <i className="fas fa-undo" onClick={handleClick}></i>
             </div>
