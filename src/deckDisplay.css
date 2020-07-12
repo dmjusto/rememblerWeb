@@ -1,0 +1,13 @@
+.deckDisplay{
+    display: flex;
+    flex-direction: column;
+}
+
+#deckNavigation{
+    margin-left: auto;
+}
+
+#deckNavigation .btn{
+    background-color: #FF4081;
+    margin: 20px 0 0 20px;
+}

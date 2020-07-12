@@ -31,7 +31,7 @@ export default class card extends Component {
                     <span className='headerText parentFolder'>{this.props.parentFolder} {" > "}</span>
                     <span className='headerText parentDeck'><em>{this.props.parentDeck}</em></span>
                 </div>
-                <i class="fas fa-undo" onClick={this.handleClick}></i>
+                <i className="fas fa-undo" onClick={this.handleClick}></i>
             </div>
         )
     }

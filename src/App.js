@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
 
-import Card from './card';
+// import Card from './card';
+import DeckDisplay from './deckDisplay';
 import Navbar from './navBar';
 import SideBar from './sideBar';
 
@@ -13,7 +14,7 @@ function App() {
       <div className='appContent'>
         <SideBar/>
         <div className='deck-section'>
-          <Card/>
+          <DeckDisplay/>
         </div>
       </div>
 

@@ -7,8 +7,8 @@ export default class navBar extends Component {
             <header className='navBar'>
                 <h1>RemembleR</h1>
                 <div id="navBar-icons">
-                    <i class="fas fa-user-friends"></i>
-                    <i class="fas fa-user"></i>
+                    <i className="fas fa-user-friends"></i>
+                    <i className="fas fa-user"></i>
                 </div>
             </header>
         )
