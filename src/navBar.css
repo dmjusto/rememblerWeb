@@ -14,7 +14,6 @@
     margin: 0;
     color: #80CBC4;
     line-height: 85px;
-    /* text-align: center; */
 }
 
 #navBar-icons{
@@ -25,10 +24,10 @@
     right: 0;
 }
 
-#navBar-icons i{
+#navBar-icons .icon{
     margin-left: 10px;
 }
 
-#navBar-icons i:hover{
+#navBar-icons .icon:hover{
     cursor: pointer;
 }

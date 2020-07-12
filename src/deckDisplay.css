@@ -8,6 +8,26 @@
 }
 
 #deckNavigation .btn{
-    background-color: #FF4081;
+    background-color: #f12f70;
     margin: 20px 0 0 20px;
+    /* box-shadow: 8px 8px 12px rgba(0, 0, 0, 0.5); */
+}
+
+#deckNavigation .btn:hover{
+    background-color: #f02065;
+}
+
+#deckNavigation .btn:active, .deckDisplay .btn:active{
+    box-shadow: none;
+}
+
+.deckDisplay .btn{
+    background-color: #212121;
+    color: #F2F2F2;
+    /* box-shadow: 8px 8px 12px rgba(0, 0, 0, 0.5); */
+    margin: 0 10px 10px 0;
+}
+
+.deckDisplay .btn:hover{
+    background-color: #353535;
 }

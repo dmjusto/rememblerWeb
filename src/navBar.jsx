@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './navBar.css';
+import PersonIcon from '@material-ui/icons/Person';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 
 export default class navBar extends Component {
     render() {
@@ -7,8 +9,8 @@ export default class navBar extends Component {
             <header className='navBar'>
                 <h1>RemembleR</h1>
                 <div id="navBar-icons">
-                    <i className="fas fa-user-friends"></i>
-                    <i className="fas fa-user"></i>
+                    <PeopleAltIcon className='icon'/>
+                    <PersonIcon className='icon'/>
                 </div>
             </header>
         )
