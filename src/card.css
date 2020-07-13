@@ -8,6 +8,7 @@
     transition: all 500ms ease-in-out;
     transform-style: preserve-3d;
     transform-origin: center left;
+    /* border: 1px solid #202020; */
 }
 
 .card.isFlipped{

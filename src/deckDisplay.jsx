@@ -118,7 +118,7 @@ export default class deckDisplay extends Component {
 
                 <div className="deck">
 
-                    {/* <Card {...cardContent} handleClick={this.flipCard} handleDelete={this.handleDelete}/> */}
+                    
 
                     {cards.map(c => (
                         <Card 
@@ -128,7 +128,7 @@ export default class deckDisplay extends Component {
                             />
                     ))}
                     
-
+                    {/* {cards.length > 0 && <Card {...cardContent} handleClick={this.flipCard} handleDelete={this.handleDelete}/>} */}
                     <DeckBlank/>
                 </div>
                 
