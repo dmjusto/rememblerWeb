@@ -14,9 +14,9 @@ export default class card extends Component {
     }
 
     render() {
-        const {facingForward, handleClick, handleDelete, frontContent, backContent} = this.props;
+        const {discarded, facingForward, handleClick, handleDelete, frontContent, backContent} = this.props;
         return (
-            <div className={`card ${!facingForward  && 'isFlipped'}`} onClick={handleClick}>
+            <div className={`card ${!facingForward  && 'isFlipped'} ${discarded && 'discarded'}`} onClick={handleClick}>
                 <div className='card-face card-face-front'>
                     <h2>{frontContent}</h2>
                     <div className="cardHeader">

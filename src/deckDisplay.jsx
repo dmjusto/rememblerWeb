@@ -15,32 +15,67 @@ export default class deckDisplay extends Component {
         super(props);
         this.state = {
             cards: [
-                {frontContent: 'Card 3 front', backContent: 'Card 3 back', facingForward: true},
-                {frontContent: 'Card 2 front', backContent: 'Card 2 back', facingForward: true},
-                {frontContent: 'Card 1 front', backContent: 'Card 1 back', facingForward: true}
+                {frontContent: 'Card 3 front', backContent: 'Card 3 back', facingForward: true, discarded: false},
+                {frontContent: 'Card 2 front', backContent: 'Card 2 back', facingForward: true, discarded: false},
+                {frontContent: 'Card 1 front', backContent: 'Card 1 back', facingForward: true, discarded: false}
             ],
             discard: [],
-            // facingForward: true,
         }
 
         this.handleNext = this.handleNext.bind(this);
         this.handlePrev = this.handlePrev.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.flipCard = this.flipCard.bind(this);
+        this.popCard = this.popCard.bind(this);
+        this.revealCard = this.revealCard.bind(this);
+    }
+
+    popCard(){
+        this.setState({
+            discard: [...this.state.discard, this.state.cards.pop()]
+        })
+    }
+
+    revealCard(){
+        const lastCardIndex = this.state.cards.length - 1;
+        const enCardedCard = this.state.cards[lastCardIndex];
+        enCardedCard.discarded = false;
+
+        this.setState({
+            cards: [...this.state.cards.slice(0, lastCardIndex), enCardedCard]
+        })
     }
 
     handlePrev(){
+
         this.setState({
-            cards: [...this.state.cards, this.state.discard.pop()],
-            // facingForward: true
-        })
+            cards: [...this.state.cards, this.state.discard.pop()]
+        }, () => {(
+            setTimeout( this.revealCard)
+        )})
     }
 
     handleNext(){
-        this.setState({
-            discard: [...this.state.discard, this.state.cards.pop()],
-            // facingForward: true
-        })
+        if(!this.state.cards[this.state.cards.length -1].facingForward){
+            this.flipCard();
+            setTimeout(this.handleNext, 500);
+        }
+        else{
+            const lastCardIndex = this.state.cards.length - 1;
+            const discardedCard = this.state.cards[lastCardIndex];
+            discardedCard.discarded = true;
+    
+            this.setState(state => ({
+                cards: [...state.cards.slice(0, lastCardIndex), discardedCard]
+            }), () => {(
+                setTimeout(this.popCard, 500)
+            )})
+        }
+
+
+        
+
+
     }
 
     handleDelete(e){
@@ -82,25 +117,19 @@ export default class deckDisplay extends Component {
                 </div>
 
                 <div className="deck">
-                    {/* {cards.length > 1 &&
+
+                    {/* <Card {...cardContent} handleClick={this.flipCard} handleDelete={this.handleDelete}/> */}
+
+                    {cards.map(c => (
                         <Card 
-                            {...secondCardContent} 
-                            facingForward={true} 
+                            {...c} 
                             handleClick={this.flipCard}
                             handleDelete={this.handleDelete}
-                        />
-                    } */}
+                            />
+                    ))}
+                    
 
-                    {cards.length > 0 &&
-                        <Card 
-                            {...cardContent} 
-                            // facingForward={facingForward} 
-                            handleClick={this.flipCard}
-                            handleDelete={this.handleDelete}
-                         />
-                    }
-
-                    {/* <DeckBlank/> */}
+                    <DeckBlank/>
                 </div>
                 
                 

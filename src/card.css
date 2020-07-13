@@ -5,9 +5,22 @@
     border-radius: 15px;
     position: absolute;
     box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.3);
-    transition: transform 500ms ease-in-out;
+    transition: all 500ms ease-in-out;
     transform-style: preserve-3d;
     transform-origin: center left;
+}
+
+.card.isFlipped{
+    transform: translateX(100%) rotateY(180deg);
+}
+
+.card-face-back{
+    transform: rotateY(180deg);
+}
+
+.card.discarded{
+    transform:  translateX(105%);
+    opacity: 0;
 }
 
 .card-face:hover{
@@ -24,25 +37,9 @@
     align-items: center;
 }
 
-.card-face-back{
-    transform: rotateY(180deg);
-}
 
-.card.isFlipped{
-    transform: translateX(100%) rotateY(180deg);
-}
 
-#flipIcon{
-    font-size: 2em;
-    position: absolute;
-    bottom: 10px;
-    right: 20px;
-    transition: all 200ms ease-in-out;
-}
 
-#flipIcon:hover{
-    cursor: pointer;
-}
 
 
 .cardHeader{
